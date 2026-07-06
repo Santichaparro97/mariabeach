@@ -465,7 +465,80 @@ button { border: none; background: none; cursor: pointer; font-family: inherit; 
   transform: translateY(-50%) scale(1.08);
 }
 
-/* ============ FOOTER (provisorio) ============ */
+/* ============ RESEÑAS + UBICACIÓN ============ */
+.ubicacion {
+  position: relative;
+  padding: 90px 0 110px;
+  background: #fff;
+  overflow: hidden;
+}
+
+/* carrusel infinito de reseñas: derecha a izquierda, sin fin */
+.reviews-marquee {
+  overflow: hidden;
+  margin-bottom: 70px;
+  -webkit-mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
+  mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
+}
+
+.reviews-track {
+  display: flex;
+  width: max-content;
+  animation: marquee-resenas 45s linear infinite;
+}
+
+.reviews-track img {
+  height: 150px;
+  width: auto;
+  margin-right: 26px;
+  border-radius: 10px;
+  box-shadow: 0 6px 22px rgba(0, 0, 0, .10);
+}
+
+@keyframes marquee-resenas {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+
+.ubicacion-grid {
+  display: grid;
+  grid-template-columns: 1fr 1.2fr;
+  gap: 60px;
+  align-items: center;
+}
+
+.horarios { margin-top: 6px; }
+
+.horarios li {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 20px;
+  padding: 15px 0;
+  border-bottom: 1px solid #ececec;
+}
+
+.horarios li span:first-child {
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+
+.horarios li span:last-child {
+  font-size: 14px;
+  font-weight: 600;
+  color: #333;
+}
+
+.horarios-btn { margin-top: 30px; }
+
+.ubicacion-mapa iframe {
+  width: 100%;
+  height: 330px;
+  border: 0;
+  display: block;
+}
 .footer {
   background: var(--dark);
   color: #fff;
@@ -610,6 +683,15 @@ button { border: none; background: none; cursor: pointer; font-family: inherit; 
     letter-spacing: 1.5px;
     text-align: center;
   }
+}
+
+@media (max-width: 768px) {
+  /* reseñas y ubicación en móvil */
+  .ubicacion { padding: 60px 0 80px; }
+  .reviews-marquee { margin-bottom: 46px; }
+  .reviews-track img { height: 112px; margin-right: 16px; }
+  .ubicacion-grid { grid-template-columns: 1fr; gap: 36px; }
+  .ubicacion-mapa iframe { height: 260px; }
 }
 
 @media (max-width: 480px) {

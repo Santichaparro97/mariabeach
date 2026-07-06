@@ -9,6 +9,7 @@ Logo.png        -> logo MARIA BEACH (header y footer)
 2.png           -> tarjeta "Talleres"
 3.png           -> tarjeta "Sunset"
 4.png           -> tarjeta "Festeja tu cumpleaños"
+resena-1..5.png -> capturas de reseñas de Google (carrusel infinito)
 
 OPCIONALES:
 hero-2.jpg      -> segunda foto del slider (mientras falte, se repite inicio.png)
