@@ -140,6 +140,26 @@ button { border: none; background: none; cursor: pointer; font-family: inherit; 
   overflow: hidden;
 }
 
+/* título principal: misma letra redondeada del logo */
+.hero-title {
+  position: absolute;
+  z-index: 2;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 90%;
+  font-family: 'Chewy', cursive;
+  font-weight: 400;
+  font-size: clamp(34px, 5.5vw, 76px);
+  line-height: 1.15;
+  color: #fff;
+  text-align: center;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  text-shadow: 0 3px 26px rgba(0, 20, 30, .45);
+  user-select: none;
+}
+
 /* velo sutil arriba para que el menú blanco se lea sobre la foto */
 .hero::before {
   content: '';
