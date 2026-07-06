@@ -1,0 +1,17 @@
+Poné los videos (mp4) en esta carpeta con estos nombres exactos.
+Se reproducen solos, en loop, sin sonido y sin botón de play.
+
+nosotros.mp4    -> video de la sección "Sobre Nosotros"
+                   (el del post https://www.instagram.com/p/DZGgTtyJEGw/)
+
+sunset-1.mp4    -> https://www.instagram.com/p/DTBXcOxCU0Z/
+sunset-2.mp4    -> https://www.instagram.com/p/DTGsH5wD-iF/
+sunset-3.mp4    -> https://www.instagram.com/p/DR0Zj6JCbvM/
+sunset-4.mp4    -> https://www.instagram.com/p/DEgZhFZJ2PU/
+sunset-5.mp4    -> https://www.instagram.com/p/DCPtKA9veYe/
+
+Cómo conseguir el mp4: desde la app de Instagram con tu cuenta podés
+descargar tus propios reels (opción "Descargar" en el menú del post),
+o exportarlos desde donde tengas los originales.
+
+Mientras falten los archivos, los recuadros se ven grises.

@@ -1,0 +1,16 @@
+Imágenes de la web (en cuanto están acá, aparecen solas — no hay que tocar código):
+
+YA EN USO:
+Inicio.png      -> fondo del hero (slider de inicio)
+Logo.png        -> logo MARIA BEACH (header y footer)
+2fondo.png      -> fondo semi-transparente de "Sobre Nosotros"
+3fondo.jpg      -> fondo semi-transparente de "Top Sunset Session"
+1.png           -> tarjeta "Gastronomía"
+2.png           -> tarjeta "Talleres"
+3.png           -> tarjeta "Sunset"
+4.png           -> tarjeta "Festeja tu cumpleaños"
+
+OPCIONALES:
+hero-2.jpg      -> segunda foto del slider (mientras falte, se repite inicio.png)
+hero-3.jpg      -> tercera foto del slider (mientras falte, se repite inicio.png)
+steven.jpg      -> avatar circular de Steven (sección sunset)

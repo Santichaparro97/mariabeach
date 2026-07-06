@@ -1,0 +1,469 @@
+/* ============ WAVE RIDE — réplica de diseño ============ */
+:root {
+  --cyan: #17e2d3;
+  --dark: #1c1c1c;
+  --gray: #6f6f6f;
+  --font-head: 'Montserrat', sans-serif;
+  --font-body: 'Special Elite', monospace;
+  --font-script: 'Kaushan Script', cursive;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: var(--font-head);
+  color: var(--dark);
+  background: #fff;
+  overflow-x: hidden;
+}
+
+a { text-decoration: none; color: inherit; }
+ul { list-style: none; }
+button { border: none; background: none; cursor: pointer; font-family: inherit; }
+
+.container {
+  width: min(1140px, 90%);
+  margin: 0 auto;
+}
+
+/* ============ BARRAS SUPERIORES (flotan sobre el hero) ============ */
+/* Fija y transparente: se esconde al bajar y reaparece al subir */
+.site-top {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 30;
+  transition: transform .35s ease, background .35s ease;
+}
+
+.site-top.oculta { transform: translateY(-100%); }
+
+/* Cuando reaparece lejos del inicio, un velo oscuro sutil
+   para que el menú blanco se lea sobre las secciones claras */
+.site-top.con-fondo {
+  background: rgba(12, 24, 28, .72);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+}
+
+/* ============ TOPBAR ============ */
+.topbar {
+  background: transparent;
+  color: #fff;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px 36px;
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+
+.topbar-left, .topbar-right { display: flex; align-items: center; gap: 14px; }
+.topbar-label { margin-right: 4px; }
+.topbar-social { display: inline-flex; opacity: .9; }
+.topbar-social:hover { opacity: 1; }
+.topbar-item { display: inline-flex; align-items: center; gap: 6px; }
+
+/* ============ HEADER ============ */
+.header {
+  background: transparent;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px 36px;
+}
+
+.nav {
+  display: flex;
+  align-items: center;
+  gap: 48px;
+}
+
+.nav-menu {
+  display: flex;
+  align-items: center;
+  gap: 38px;
+}
+
+.nav-menu a {
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: #fff;
+  text-shadow: 0 1px 8px rgba(0, 0, 0, .35);
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  transition: color .25s;
+}
+.nav-menu a:hover, .nav-menu a.active { color: var(--cyan); }
+
+/* ============ HERO ============ */
+.hero {
+  position: relative;
+  /* el alto sigue la proporción real de la foto (1707x921):
+     se ve completa, de extremo a extremo, sin deformar ni recortar */
+  aspect-ratio: 1707 / 921;
+  overflow: hidden;
+}
+
+/* velo sutil arriba para que el menú blanco se lea sobre la foto */
+.hero::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 190px;
+  background: linear-gradient(180deg, rgba(0, 0, 0, .4), transparent);
+  z-index: 1;
+  pointer-events: none;
+}
+
+.hero-slide {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  transition: opacity 1s ease;
+  /* el contenedor ya tiene la proporción de la foto: cubre sin deformar */
+  background-size: cover;
+  background-position: center;
+}
+.hero-slide.is-active { opacity: 1; }
+
+/* Slide 1: foto principal. Slides 2 y 3 usan la misma foto como respaldo
+   hasta que existan hero-2.jpg / hero-3.jpg en img/ */
+.hero-slide--1 { background-image: url('../img/Inicio.png'); }
+.hero-slide--2 { background-image: url('../img/hero-2.jpg'), url('../img/Inicio.png'); }
+.hero-slide--3 { background-image: url('../img/hero-3.jpg'), url('../img/Inicio.png'); }
+
+.hero-arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #fff;
+  opacity: .85;
+  z-index: 5;
+  transition: opacity .25s, transform .25s;
+}
+.hero-arrow:hover { opacity: 1; }
+.hero-arrow--prev { left: 26px; }
+.hero-arrow--next { right: 26px; }
+.hero-arrow--prev:hover { transform: translateY(-50%) translateX(-3px); }
+.hero-arrow--next:hover { transform: translateY(-50%) translateX(3px); }
+
+.hero-scroll {
+  position: absolute;
+  bottom: 22px;
+  left: 50%;
+  transform: translateX(-50%);
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  font-size: 9px;
+  font-weight: 600;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  opacity: .9;
+}
+
+/* ============ CURSOS ============ */
+.courses {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+}
+
+.course-card {
+  position: relative;
+  height: 265px;
+  background-size: cover;
+  background-position: center;
+  overflow: hidden;
+}
+
+.course-card--1 { background-image: url('../img/1.png'); }
+.course-card--2 { background-image: url('../img/2.png'); }
+.course-card--3 { background-image: url('../img/3.png'); }
+.course-card--4 { background-image: url('../img/4.png'); }
+
+.course-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(0,0,0,.28) 0%, rgba(0,0,0,.05) 60%);
+  transition: background .3s;
+}
+.course-card:hover::before { background: rgba(0,0,0,.35); }
+
+.course-info {
+  position: relative;
+  z-index: 2;
+  padding: 34px 30px;
+  color: #fff;
+}
+
+.course-info h3 {
+  font-size: 21px;
+  font-weight: 600;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  line-height: 1.35;
+}
+
+.btn-info {
+  display: inline-block;
+  background: var(--cyan);
+  color: #fff;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  padding: 8px 18px;
+  margin-top: 16px;
+  transition: background .25s;
+}
+.btn-info:hover { background: #10cabd; }
+
+/* ============ SECCIONES CLARAS (textura splatter sutil) ============ */
+.paradise, .lessons {
+  position: relative;
+  background:
+    radial-gradient(circle 3px at 12% 30%, rgba(0,0,0,.05) 98%, transparent),
+    radial-gradient(circle 2px at 28% 75%, rgba(0,0,0,.045) 98%, transparent),
+    radial-gradient(circle 4px at 68% 18%, rgba(0,0,0,.04) 98%, transparent),
+    radial-gradient(circle 2px at 85% 60%, rgba(0,0,0,.05) 98%, transparent),
+    radial-gradient(circle 3px at 45% 90%, rgba(0,0,0,.04) 98%, transparent),
+    radial-gradient(circle 2px at 92% 12%, rgba(0,0,0,.05) 98%, transparent),
+    #fff;
+}
+
+.section-title {
+  font-size: 27px;
+  font-weight: 600;
+  letter-spacing: 8px;
+  text-transform: uppercase;
+  margin-bottom: 26px;
+}
+
+.paradise p, .lessons p {
+  font-family: var(--font-head);
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 1.75;
+  color: #111;
+  max-width: 340px;
+}
+
+/* ============ SOBRE NOSOTROS ============ */
+.paradise { padding: 110px 0; }
+
+/* Imagen de fondo semi-transparente: ancho completo de extremo a extremo,
+   proporción original (sin deformar ni recortar), centrada verticalmente.
+   El degradé de los bordes funde la imagen con el blanco: sin línea divisoria */
+.paradise::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: url('../img/2fondo.png') center no-repeat;
+  background-size: 100% auto;
+  opacity: .25;
+  -webkit-mask-image: linear-gradient(180deg, transparent 0%, #000 22%, #000 78%, transparent 100%);
+  mask-image: linear-gradient(180deg, transparent 0%, #000 22%, #000 78%, transparent 100%);
+  pointer-events: none;
+}
+
+.paradise-grid { position: relative; z-index: 1; }
+
+.paradise-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
+  gap: 70px;
+}
+
+.paradise-media {
+  display: flex;
+  justify-content: center;
+}
+
+/* Videos nativos: sin marco, autoplay en loop y silenciados */
+.video-box {
+  position: relative;
+  overflow: hidden;
+  background: #f2f2f2;
+}
+
+.video-box video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.video-box--nosotros {
+  width: 340px;
+  height: 425px;
+}
+
+.btn-group {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+  margin-top: 34px;
+}
+
+.btn-outline {
+  display: inline-block;
+  border: 1px solid var(--dark);
+  padding: 15px 30px;
+  font-family: var(--font-head);
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  transition: background .25s, color .25s;
+}
+.btn-outline:hover { background: var(--dark); color: #fff; }
+
+.btn-solid {
+  display: inline-block;
+  background: var(--cyan);
+  border: 1px solid var(--cyan);
+  color: #fff;
+  padding: 15px 30px;
+  font-family: var(--font-head);
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  transition: background .25s, border-color .25s;
+}
+.btn-solid:hover { background: #10cabd; border-color: #10cabd; }
+
+/* ============ TOP SUNSET SESSION ============ */
+.lessons { padding: 60px 0 130px; }
+
+/* Fondo semi-transparente igual al de "Sobre Nosotros", con el mismo
+   degradé en los bordes para fundirse sin línea divisoria */
+.lessons::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: url('../img/3fondo.jpg') center no-repeat;
+  background-size: 100% auto;
+  opacity: .25;
+  -webkit-mask-image: linear-gradient(180deg, transparent 0%, #000 22%, #000 78%, transparent 100%);
+  mask-image: linear-gradient(180deg, transparent 0%, #000 22%, #000 78%, transparent 100%);
+  pointer-events: none;
+}
+
+.lessons-grid { position: relative; z-index: 1; }
+
+.lessons-grid {
+  display: grid;
+  grid-template-columns: 1fr 1.15fr;
+  align-items: center;
+  gap: 60px;
+}
+
+.lessons-media {
+  display: flex;
+  gap: 22px;
+  align-items: flex-start;
+}
+
+.sunset-crop--big {
+  width: 305px;
+  height: 405px;
+  flex-shrink: 0;
+}
+
+.sunset-crop--small {
+  width: 218px;
+  height: 292px;
+  margin-top: 56px;
+  flex-shrink: 0;
+}
+
+.sunset-arrow {
+  align-self: center;
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+  background: var(--cyan);
+  color: #fff;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  box-shadow: 0 8px 24px rgba(23, 226, 211, .4);
+  transition: background .25s, transform .25s;
+}
+.sunset-arrow:hover {
+  background: #10cabd;
+  transform: translateX(3px);
+}
+
+/* ============ FOOTER (provisorio) ============ */
+.footer {
+  background: var(--dark);
+  color: #fff;
+  text-align: center;
+  padding: 70px 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 24px;
+}
+
+.footer-logo img {
+  height: 90px;
+  width: auto;
+  display: block;
+}
+
+.footer-social {
+  display: flex;
+  gap: 20px;
+}
+.footer-social a { opacity: .7; transition: opacity .25s, color .25s; }
+.footer-social a:hover { opacity: 1; color: var(--cyan); }
+
+.footer-copy {
+  font-size: 10px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  opacity: .55;
+}
+
+/* ============ RESPONSIVE ============ */
+@media (max-width: 1200px) {
+  .nav { gap: 26px; }
+  .nav-menu { gap: 20px; }
+}
+
+@media (max-width: 992px) {
+  .topbar { padding: 8px 18px; }
+  .header { padding: 14px 18px; flex-wrap: wrap; gap: 14px; }
+  .nav { order: 3; width: 100%; justify-content: center; }
+  .courses { grid-template-columns: repeat(2, 1fr); }
+  .paradise-grid, .lessons-grid { grid-template-columns: 1fr; gap: 50px; }
+  .lessons-media { justify-content: center; }
+}
+
+@media (max-width: 600px) {
+  .topbar-right { display: none; }
+  .nav-menu { flex-wrap: wrap; justify-content: center; gap: 14px; }
+  .courses { grid-template-columns: 1fr; }
+  .lessons-media { flex-direction: column; align-items: center; }
+  .sunset-crop--small { margin-top: 0; }
+  .paradise p, .lessons p { max-width: 100%; }
+}
