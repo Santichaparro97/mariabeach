@@ -341,11 +341,12 @@ button { border: none; background: none; cursor: pointer; font-family: inherit; 
   justify-content: center;
 }
 
-/* Videos nativos: sin marco, autoplay en loop y silenciados */
+/* Videos nativos: sin marco, autoplay en loop y silenciados.
+   Fondo oscuro: si hay un microparpadeo en la transición, nunca se ve blanco */
 .video-box {
   position: relative;
   overflow: hidden;
-  background: #f2f2f2;
+  background: #14201f;
 }
 
 .video-box video {
@@ -431,6 +432,7 @@ button { border: none; background: none; cursor: pointer; font-family: inherit; 
   width: 305px;
   height: 405px;
   flex-shrink: 0;
+  margin-left: 40px; /* corrido a la derecha */
 }
 
 .sunset-crop--small {
@@ -440,8 +442,13 @@ button { border: none; background: none; cursor: pointer; font-family: inherit; 
   flex-shrink: 0;
 }
 
+/* flecha montada sobre el video de arriba, borde derecho al centro */
 .sunset-arrow {
-  align-self: center;
+  position: absolute;
+  right: 14px;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 3;
   width: 46px;
   height: 46px;
   border-radius: 50%;
@@ -450,13 +457,12 @@ button { border: none; background: none; cursor: pointer; font-family: inherit; 
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  flex-shrink: 0;
-  box-shadow: 0 8px 24px rgba(23, 226, 211, .4);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, .35);
   transition: background .25s, transform .25s;
 }
 .sunset-arrow:hover {
   background: #10cabd;
-  transform: translateX(3px);
+  transform: translateY(-50%) scale(1.08);
 }
 
 /* ============ FOOTER (provisorio) ============ */
@@ -592,13 +598,6 @@ button { border: none; background: none; cursor: pointer; font-family: inherit; 
     letter-spacing: 1.5px;
     text-align: center;
   }
-  /* corte de fila: la flecha queda sola abajo, centrada */
-  .lessons-grid::after {
-    content: '';
-    width: 100%;
-    order: 4;
-  }
-  .sunset-arrow { order: 5; margin: 0 auto; align-self: auto; }
 }
 
 @media (max-width: 480px) {
