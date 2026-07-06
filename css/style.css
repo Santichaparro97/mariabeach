@@ -144,7 +144,7 @@ button { border: none; background: none; cursor: pointer; font-family: inherit; 
 .hero-title {
   position: absolute;
   z-index: 2;
-  top: 50%;
+  top: 25%; /* a la altura del abanico de la foto */
   left: 50%;
   transform: translate(-50%, -50%);
   width: 90%;
@@ -581,8 +581,20 @@ button { border: none; background: none; cursor: pointer; font-family: inherit; 
   .lessons-text, .lessons-media { display: contents; }
   .lessons-text .section-title { width: 100%; order: 0; margin-bottom: 0; }
   .lessons-text p { width: 100%; order: 1; margin: 0; max-width: 100%; }
-  .sunset-crop--big { order: 2; width: 52vw; height: 69vw; }
+  .sunset-crop--big {
+    order: 2;
+    width: 52vw;
+    height: 69vw;
+    margin-left: 100px; /* 40px base + 60px extra a la derecha */
+    overflow: visible;  /* deja ver la flecha que queda afuera del video */
+  }
   .sunset-crop--small { order: 3; width: 36vw; height: 48vw; margin-top: 0; }
+
+  /* flecha a la derecha del video, sin encimarlo */
+  .sunset-arrow {
+    right: auto;
+    left: calc(100% + 10px);
+  }
   .lessons .btn-group {
     order: 4;
     flex: 1;
