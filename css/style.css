@@ -515,14 +515,27 @@ button { border: none; background: none; cursor: pointer; font-family: inherit; 
     height: 62vh;
     min-height: 420px;
   }
-  .hero-arrow--prev { left: 8px; }
-  .hero-arrow--next { right: 8px; }
+  /* sin flechas del slider en el inicio */
+  .hero-arrow { display: none; }
 
   /* secciones más compactas */
   .paradise { padding: 70px 0; }
   .lessons { padding: 30px 0 90px; }
   .section-title { font-size: 22px; letter-spacing: 5px; }
-  .paradise p, .lessons p { max-width: 100%; }
+
+  /* SOBRE NOSOTROS: título centrado, video, descripción centrada
+     y los dos botones comprimidos uno al lado del otro */
+  .paradise-grid {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 26px;
+  }
+  .paradise-text { display: contents; }
+  .paradise-text .section-title { order: -1; margin-bottom: 0; text-align: center; }
+  .paradise-text p { order: 1; margin: 0; max-width: 340px; text-align: center; }
+  .paradise .btn-group { order: 2; margin-top: 0; justify-content: center; gap: 10px; }
+  .paradise .btn-group a { padding: 12px 14px; font-size: 10px; letter-spacing: 2px; }
 
   /* video de Sobre Nosotros: entra completo en el ancho */
   .video-box--nosotros {
@@ -531,16 +544,49 @@ button { border: none; background: none; cursor: pointer; font-family: inherit; 
     aspect-ratio: 340 / 425;
   }
 
-  /* videos sunset: mismo par desnivelado de desktop, escalado al ancho */
-  .lessons-media { flex-wrap: wrap; gap: 4vw; }
-  .sunset-crop--big { width: 52vw; height: 69vw; }
-  .sunset-crop--small { width: 36vw; height: 48vw; margin-top: 14vw; }
-  .sunset-arrow { margin: 26px auto 0; align-self: auto; }
+  /* TOP SUNSET SESSION: título, subtítulo, videos, y los dos botones
+     apilados a la derecha del video de abajo */
+  .lessons-grid {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    gap: 22px 4vw;
+  }
+  .lessons-text, .lessons-media { display: contents; }
+  .lessons-text .section-title { width: 100%; order: 0; margin-bottom: 0; }
+  .lessons-text p { width: 100%; order: 1; margin: 0; max-width: 100%; }
+  .sunset-crop--big { order: 2; width: 52vw; height: 69vw; }
+  .sunset-crop--small { order: 3; width: 36vw; height: 48vw; margin-top: 0; }
+  .lessons .btn-group {
+    order: 4;
+    flex: 1;
+    min-width: 0;
+    flex-direction: column;
+    align-self: center;
+    margin-top: 0;
+    gap: 10px;
+  }
+  .lessons .btn-group a {
+    padding: 12px 6px;
+    font-size: 10px;
+    letter-spacing: 1.5px;
+    text-align: center;
+  }
+  /* corte de fila: la flecha queda sola abajo, centrada */
+  .lessons-grid::after {
+    content: '';
+    width: 100%;
+    order: 4;
+  }
+  .sunset-arrow { order: 5; margin: 0 auto; align-self: auto; }
 }
 
 @media (max-width: 480px) {
-  .courses { grid-template-columns: 1fr; }
-  .course-card { height: 230px; }
-  .course-info { padding: 26px 22px; }
+  /* tarjetas de servicios: 2 arriba y 2 abajo */
+  .courses { grid-template-columns: repeat(2, 1fr); }
+  .course-card { height: 190px; }
+  .course-info { padding: 18px 14px; }
+  .course-info h3 { font-size: 13px; letter-spacing: 2px; }
+  .btn-info { font-size: 10px; padding: 6px 12px; margin-top: 10px; }
   .footer-logo img { height: 72px; }
 }
