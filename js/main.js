@@ -1,3 +1,15 @@
+// Menú hamburguesa (móvil): abre/cierra el overlay y se cierra al elegir sección
+(function () {
+  const bar = document.querySelector('.site-top');
+  const toggle = document.querySelector('.menu-toggle');
+  if (!bar || !toggle) return;
+
+  toggle.addEventListener('click', () => bar.classList.toggle('menu-abierto'));
+  document.querySelectorAll('.nav-menu a').forEach(a =>
+    a.addEventListener('click', () => bar.classList.remove('menu-abierto'))
+  );
+})();
+
 // Scroll suave y controlado: la rueda del mouse mueve la página
 // con una inercia lenta en vez del salto seco del navegador
 (function () {
@@ -38,6 +50,7 @@
   let lastY = window.scrollY;
 
   window.addEventListener('scroll', () => {
+    if (bar.classList.contains('menu-abierto')) return;
     const y = window.scrollY;
     if (y < 80) {
       // arriba de todo: visible y 100% transparente

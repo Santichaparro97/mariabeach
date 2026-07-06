@@ -104,6 +104,33 @@ button { border: none; background: none; cursor: pointer; font-family: inherit; 
 }
 .nav-menu a:hover, .nav-menu a.active { color: var(--cyan); }
 
+/* Botón hamburguesa: solo visible en móvil */
+.menu-toggle {
+  display: none;
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+  background: var(--cyan);
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  position: relative;
+  z-index: 45;
+  transition: background .25s;
+}
+.menu-toggle:hover { background: #10cabd; }
+.menu-toggle span {
+  width: 16px;
+  height: 2px;
+  background: #fff;
+  border-radius: 2px;
+  transition: transform .3s, opacity .3s;
+}
+.site-top.menu-abierto .menu-toggle span:nth-child(1) { transform: translateY(6px) rotate(45deg); }
+.site-top.menu-abierto .menu-toggle span:nth-child(2) { opacity: 0; }
+.site-top.menu-abierto .menu-toggle span:nth-child(3) { transform: translateY(-6px) rotate(-45deg); }
+
 /* ============ HERO ============ */
 .hero {
   position: relative;
@@ -452,18 +479,68 @@ button { border: none; background: none; cursor: pointer; font-family: inherit; 
 
 @media (max-width: 992px) {
   .topbar { padding: 8px 18px; }
-  .header { padding: 14px 18px; flex-wrap: wrap; gap: 14px; }
-  .nav { order: 3; width: 100%; justify-content: center; }
+  .header { padding: 14px 18px; }
   .courses { grid-template-columns: repeat(2, 1fr); }
   .paradise-grid, .lessons-grid { grid-template-columns: 1fr; gap: 50px; }
   .lessons-media { justify-content: center; }
 }
 
-@media (max-width: 600px) {
+/* ============ MÓVIL ============ */
+@media (max-width: 768px) {
+  /* topbar mínima: solo redes */
   .topbar-right { display: none; }
-  .nav-menu { flex-wrap: wrap; justify-content: center; gap: 14px; }
-  .courses { grid-template-columns: 1fr; }
-  .lessons-media { flex-direction: column; align-items: center; }
-  .sunset-crop--small { margin-top: 0; }
+
+  /* menú hamburguesa: el nav pasa a overlay a pantalla completa */
+  .header { justify-content: flex-end; padding: 12px 16px; }
+  .menu-toggle { display: inline-flex; }
+  .nav {
+    position: fixed;
+    inset: 0;
+    background: rgba(12, 24, 28, .96);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity .3s ease, visibility .3s ease;
+    z-index: 40;
+  }
+  .site-top.menu-abierto .nav { opacity: 1; visibility: visible; }
+  .nav-menu { flex-direction: column; gap: 36px; }
+  .nav-menu a { font-size: 16px; letter-spacing: 5px; }
+
+  /* hero: ocupa buena parte de la pantalla, la foto cubre con recorte lateral */
+  .hero {
+    aspect-ratio: auto;
+    height: 62vh;
+    min-height: 420px;
+  }
+  .hero-arrow--prev { left: 8px; }
+  .hero-arrow--next { right: 8px; }
+
+  /* secciones más compactas */
+  .paradise { padding: 70px 0; }
+  .lessons { padding: 30px 0 90px; }
+  .section-title { font-size: 22px; letter-spacing: 5px; }
   .paradise p, .lessons p { max-width: 100%; }
+
+  /* video de Sobre Nosotros: entra completo en el ancho */
+  .video-box--nosotros {
+    width: min(340px, 88vw);
+    height: auto;
+    aspect-ratio: 340 / 425;
+  }
+
+  /* videos sunset: mismo par desnivelado de desktop, escalado al ancho */
+  .lessons-media { flex-wrap: wrap; gap: 4vw; }
+  .sunset-crop--big { width: 52vw; height: 69vw; }
+  .sunset-crop--small { width: 36vw; height: 48vw; margin-top: 14vw; }
+  .sunset-arrow { margin: 26px auto 0; align-self: auto; }
+}
+
+@media (max-width: 480px) {
+  .courses { grid-template-columns: 1fr; }
+  .course-card { height: 230px; }
+  .course-info { padding: 26px 22px; }
+  .footer-logo img { height: 72px; }
 }
