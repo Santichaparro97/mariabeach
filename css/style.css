@@ -205,23 +205,6 @@ button { border: none; background: none; cursor: pointer; font-family: inherit; 
 .hero-arrow--prev:hover { transform: translateY(-50%) translateX(-3px); }
 .hero-arrow--next:hover { transform: translateY(-50%) translateX(3px); }
 
-.hero-scroll {
-  position: absolute;
-  bottom: 22px;
-  left: 50%;
-  transform: translateX(-50%);
-  color: #fff;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 8px;
-  font-size: 9px;
-  font-weight: 600;
-  letter-spacing: 4px;
-  text-transform: uppercase;
-  opacity: .9;
-}
-
 /* ============ CURSOS ============ */
 .courses {
   display: grid;
