@@ -637,8 +637,17 @@ button { border: none; background: none; cursor: pointer; font-family: inherit; 
   /* sin flechas del slider en el inicio */
   .hero-arrow { display: none; }
 
-  /* solapamiento más leve de las tarjetas sobre el hero */
-  .courses { margin-top: -20px; }
+  /* tarjetas como botones elevados: separadas, redondeadas y con
+     sombra profunda para que se note que flotan sobre la imagen */
+  .courses {
+    margin-top: -26px;
+    gap: 14px;
+    padding: 0 14px;
+  }
+  .course-card {
+    border-radius: 12px;
+    box-shadow: 0 12px 26px rgba(0, 0, 0, .30);
+  }
 
   /* secciones más compactas */
   .paradise { padding: 70px 0; }
