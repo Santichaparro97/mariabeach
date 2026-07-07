@@ -599,9 +599,13 @@ button { border: none; background: none; cursor: pointer; font-family: inherit; 
   /* topbar mínima: solo redes */
   .topbar-right { display: none; }
 
-  /* menú hamburguesa: el nav pasa a overlay a pantalla completa */
-  .header { justify-content: flex-end; padding: 12px 16px; }
-  .menu-toggle { display: inline-flex; }
+  /* panel superior más finito y transparente */
+  .topbar { padding: 4px 14px; }
+  .header { justify-content: flex-end; padding: 5px 12px; }
+  .menu-toggle { display: inline-flex; width: 38px; height: 38px; }
+  .site-top.con-fondo {
+    background: rgba(12, 24, 28, .35);
+  }
   .nav {
     position: fixed;
     inset: 0;
