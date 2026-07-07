@@ -589,6 +589,13 @@ button { border: none; background: none; cursor: pointer; font-family: inherit; 
 
 /* ============ MÓVIL ============ */
 @media (max-width: 768px) {
+  /* fondos suaves con la paleta de la web: crema arena, celeste
+     del logo y aguamarina, encadenados sin cortes entre secciones */
+  body { background: #fdf8f0; }
+  .paradise { background: linear-gradient(180deg, #fdf8f0 0%, #eaf4fb 30%, #eaf4fb 100%); }
+  .lessons { background: linear-gradient(180deg, #eaf4fb 0%, #fdf1e3 28%, #fdf1e3 100%); }
+  .ubicacion { background: linear-gradient(180deg, #fdf1e3 0%, #e8faf7 26%, #e8faf7 100%); }
+
   /* topbar mínima: solo redes */
   .topbar-right { display: none; }
 
