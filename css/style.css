@@ -226,6 +226,9 @@ button { border: none; background: none; cursor: pointer; font-family: inherit; 
 .courses {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
+  position: relative;
+  z-index: 3;
+  margin-top: -32px; /* pisa apenas la imagen principal: se nota que está encima */
 }
 
 .course-card {
@@ -633,6 +636,9 @@ button { border: none; background: none; cursor: pointer; font-family: inherit; 
   }
   /* sin flechas del slider en el inicio */
   .hero-arrow { display: none; }
+
+  /* solapamiento más leve de las tarjetas sobre el hero */
+  .courses { margin-top: -20px; }
 
   /* secciones más compactas */
   .paradise { padding: 70px 0; }
